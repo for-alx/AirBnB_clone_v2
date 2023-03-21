@@ -58,6 +58,9 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """
+            delete obj from __objects
+        """
         # print("============file storage================")
         # print(self.__objects)
         # print("========argu====================")
