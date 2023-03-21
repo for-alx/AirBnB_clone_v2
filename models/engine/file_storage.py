@@ -58,9 +58,12 @@ class FileStorage:
         # print(type(obj))
         # print(obj.__class__.__name__)
         # print("============================")
-        obj_class = str(obj.__class__.__name__)
-        obj_id = str(obj.id)
+        if obj is None:
+            return
+        else:
+            obj_class = str(obj.__class__.__name__)
+            obj_id = str(obj.id)
 
-        # print(obj_class + "." + obj_id)
+            # print(obj_class + "." + obj_id)
 
-        del self.__objects[obj_class + "." + obj_id]
+            del self.__objects[obj_class + "." + obj_id]
