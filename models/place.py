@@ -19,7 +19,6 @@ class Place(BaseModel, Base):
     # latitude = 0.0
     # longitude = 0.0
     # amenity_ids = []
-
     __tablename__ = 'places'
     city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
