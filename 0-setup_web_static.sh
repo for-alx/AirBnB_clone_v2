@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 # Prepare web servers for static web-page
 
-# package_name='nginx'
+package_name='nginx'
 
-# status="$(dpkg-query -W --showformat='${db:Status-Status}' "$package_name" 2>&1)"
-# if [ ! "$status" = 'installed' ]; then
-# 	apt-get update
-# 	apt-get install -y nginx
-# fi
-apt-get update
-apt-get install -y nginx
+status="$(dpkg-query -W --showformat='${db:Status-Status}' "$package_name" 2>&1)"
+if [ ! "$status" = 'installed' ]; then
+	apt-get update
+	apt-get install -y nginx
+fi
 
 mkdir -p /data/web_static/shared /data/web_static/releases/test
 
