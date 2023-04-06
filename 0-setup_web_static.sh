@@ -9,11 +9,11 @@ if [ ! "$status" = 'installed' ]; then
 	apt-get install -y nginx
 fi
 
-mkdir -p /data /data/web_static/ /data/web_static/releases/ /data/web_static/shared/ /data/web_static/releases/test/
+mkdir -p /data/web_static/shared /data/web_static/releases/test
 
 echo "Wala" > /data/web_static/releases/test/index.html
 
-ln -sf /data/web_static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test /data/web_static/current
 
 chown -Rh ubuntu:ubuntu /data
 
