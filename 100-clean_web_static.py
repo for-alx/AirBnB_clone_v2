@@ -5,7 +5,7 @@
     => Full deployment
 """
 from fabric.api import *
-from os import path, walk
+from os import path, walk, listdir
 from datetime import datetime
 
 
@@ -67,7 +67,7 @@ def deploy():
 def do_clean(number=0):
     number = 1 if int(number) == 0 else int(number)
 
-    archives = sorted(os.listdir("versions"))
+    archives = sorted(listdir("versions"))
     [archives.pop() for i in range(number)]
     with lcd("versions"):
         [local("rm ./{}".format(a)) for a in archives]
