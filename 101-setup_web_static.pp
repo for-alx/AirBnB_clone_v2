@@ -28,3 +28,7 @@ file { '/data/web_static/current':
   owner  => 'ubuntu',
   group  => 'ubuntu',
 }
+
+exec { 'nginx restart':
+  path => '/etc/init.d/'
+}
