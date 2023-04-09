@@ -72,7 +72,7 @@ def do_clean(number=0):
     num = int(number)
     local_archives = sorted(next(walk('./versions/'))[2])
     local_size = len(local_archives)
-    remote_archives = sorted(run("ls /data/web_static/releases/").split())
+    remote_archives = sorted(run("ls -tr /data/web_static/releases/").split())
     remote_size = len(remote_archives)
 
     if number == 0:
