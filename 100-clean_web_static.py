@@ -3,9 +3,10 @@
     => Generates a .tgz archive from the contents of the web_static folder.
     => Distributes an archive to your web servers
     => Full deployment
+    => Keep it clean!
 """
 from fabric.api import *
-from os import path, walk, listdir
+from os import path, walk
 from datetime import datetime
 
 
@@ -65,15 +66,31 @@ def deploy():
 
 
 def do_clean(number=0):
-    number = 1 if int(number) == 0 else int(number)
+    """
+    Keep it clean!
+    """
+    num = int(number)
+    local_archives = sorted(next(walk('./versions/'))[2])
+    local_size = len(local_archives)
+    remote_archives = sorted(run("ls /data/web_static/releases/").split())
+    remote_size = len(remote_archives)
 
-    archives = sorted(listdir("versions"))
-    [archives.pop() for i in range(number)]
-    with lcd("versions"):
-        [local("rm ./{}".format(a)) for a in archives]
+    if number == 0:
+        num = 1
 
-    with cd("/data/web_static/releases"):
-        archives = run("ls -tr").split()
-        archives = [a for a in archives if "web_static_" in a]
-        [archives.pop() for i in range(number)]
-        [run("rm -rf ./{}".format(a)) for a in archives]
+    # # For Local
+    del_size = local_size - num
+    i = 0
+    while i < del_size:
+        # print(local_archives[i])
+        local('rm -f ./versions/{}'.format(local_archives[i]))
+        i += 1
+
+    # For Remote
+    print("========Remote========")
+    del_size = remote_size - num
+    i = 0
+    while i < del_size:
+        # print(remote_archives[i])
+        run('rm -rf /data/web_static/releases/{}'.format(remote_archives[i]))
+        i += 1
