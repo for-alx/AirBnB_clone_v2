@@ -69,28 +69,28 @@ def do_clean(number=0):
     """
     Keep it clean!
     """
-    try:
-        number = int(number)
-    except Exception:
-        return False
-    nb_of_arch = local('ls -ltr versions | wc -l', capture=True).stdout
-    nb_of_arch = int(nb_of_arch) - 1
-    if nb_of_arch <= 0 or nb_of_arch == 1:
-        return True
-    if number == 0 or number == 1:
-        arch_to_rm = nb_of_arch - 1
-    else:
-        arch_to_rm = arch_to_rm - number
-        if arch_to_rm <= 0:
-            return True
-    archives = local("ls -ltr versions | tail -n " + str(nb_of_arch) + "\
-            | head -n \
-            " + str(arch_to_rm) + "\
-            | awk '{print $9}'", capture=True)
-    archives_list = archives.rsplit('\n')
-    if len(archives_list) >= 1:
-        for arch in archives_list:
-            if (arch != ''):
-                local("rm versions/" + arch)
-                run('rm -rf /data/web_static/releases/\
-                    ' + arch.split('.')[0])
+    num = int(number)
+    local_archives = sorted(next(walk('./versions/'))[2])
+    local_size = len(local_archives)
+    remote_archives = sorted(run("ls -tr /data/web_static/releases/").split())
+    remote_size = len(remote_archives)
+
+    if number == 0:
+        num = 1
+
+    # # For Local
+    del_size = local_size - num
+    i = 0
+    while i < del_size:
+        # print(local_archives[i])
+        local('rm -f ./versions/{}'.format(local_archives[i]))
+        i += 1
+
+    # For Remote
+    print("========Remote========")
+    del_size = remote_size - num
+    i = 0
+    while i < del_size:
+        # print(remote_archives[i])
+        run('rm -rf /data/web_static/releases/{}'.format(remote_archives[i]))
+        i += 1
