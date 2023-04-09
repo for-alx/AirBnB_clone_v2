@@ -44,8 +44,8 @@ def do_deploy(archive_path):
         run('mkdir -p {}{}/'.format(des, file_name))
         run('tar -xzf /tmp/{} -C {}{}/'.format(archive_name, des, file_name))
         run('rm /tmp/{}'.format(archive_name))
-        # run('mv {0}{1}/web_static/* {0}{1}/'.format(des, file_name))
-        # run('rm -rf {}{}/web_static'.format(des, file_name))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(des, file_name))
+        run('rm -rf {}{}/web_static'.format(des, file_name))
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(des, file_name))
         return True
