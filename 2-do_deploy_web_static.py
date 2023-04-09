@@ -1,12 +1,32 @@
 #!/usr/bin/python3
 """
-    Distributes an archive to your web servers
+    => Generates a .tgz archive from the contents of the web_static folder.
+    => Distributes an archive to your web servers
 """
-from fabric.api import put, run, env
+from fabric.api import *
 from os import path
+from datetime import datetime
 
 
 env.hosts = ['52.207.157.20', '54.175.3.48']
+
+
+def do_pack():
+    """
+        Generates a .tgz archive from the contents of the web_static folder
+    """
+    date = datetime.now().strftime("%Y%m%d%H%M%S")
+    try:
+        if path.exists("./versions") is False:
+            local('mkdir versions')
+            # print('yes')
+
+        archive_name = "versions/web_static_{}.tgz".format(date)
+        print(archive_name)
+        local("tar -czvf {} web_static".format(archive_name))
+        return archive_name
+    except Exception:
+        return None
 
 
 def do_deploy(archive_path):
