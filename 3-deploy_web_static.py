@@ -56,4 +56,4 @@ def do_deploy(archive_path):
 def deploy():
     new_archive = do_pack()
     if new_archive is not None:
-        do_pack(new_archive)
+        do_deploy(new_archive)
