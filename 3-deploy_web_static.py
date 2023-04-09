@@ -2,6 +2,7 @@
 """
     => Generates a .tgz archive from the contents of the web_static folder.
     => Distributes an archive to your web servers
+    => Full deployment
 """
 from fabric.api import *
 from os import path
@@ -54,6 +55,10 @@ def do_deploy(archive_path):
 
 
 def deploy():
+    """
+    Full deployment
+    """
     new_archive = do_pack()
     if new_archive is not None:
-        do_deploy(new_archive)
+        return do_deploy(new_archive)
+    return False

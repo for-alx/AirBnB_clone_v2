@@ -2,7 +2,6 @@
 """
     => Generates a .tgz archive from the contents of the web_static folder.
     => Distributes an archive to your web servers
-    => Full deployment
 """
 from fabric.api import *
 from os import path
