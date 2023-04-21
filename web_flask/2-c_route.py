@@ -30,7 +30,7 @@ def c(text):
     """
         accepting text input
     """
-    return 'C %s' % escape(text)
+    return 'C %s' % escape(text.replace("_", " "))
 
 
 if __name__ == '__main__':
