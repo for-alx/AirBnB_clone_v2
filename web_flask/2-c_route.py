@@ -24,6 +24,7 @@ def hbnb():
     """
     return 'HBNB'
 
+
 @app.route('/c/<text>')
 def c(text):
     """
