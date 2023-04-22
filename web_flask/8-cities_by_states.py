@@ -18,10 +18,10 @@ def cities_by_states():
     """
     states = list(storage.all('State').values())
     print("=====================================================")
-    print(states[0])
+    print(states[0].cities)
     # print(states[0])
     print("=====================================================")
-    return render_template('7-states_list.html', tasks=states)
+    return render_template('8-cities_by_states.html', tasks=states)
 
 
 @app.teardown_appcontext
