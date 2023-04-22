@@ -17,10 +17,10 @@ def cities_by_states():
         web root content
     """
     states = list(storage.all('State').values())
-    print("=====================================================")
-    print(states[0].cities)
-    # print(states[0])
-    print("=====================================================")
+    # print("=====================================================")
+    # print(states[0].cities)
+    # # print(states[0])
+    # print("=====================================================")
     return render_template('8-cities_by_states.html', tasks=states)
 
 
