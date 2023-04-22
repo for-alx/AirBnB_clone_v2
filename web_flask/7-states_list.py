@@ -23,7 +23,10 @@ def index():
 
 
 @app.teardown_appcontext
-def teardown_appcontext():
+def handle_teardown(self):
+    """
+        method to handle teardown
+    """
     storage.close()
 
 
