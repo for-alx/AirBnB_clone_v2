@@ -16,8 +16,7 @@ def index():
     """
         web root content
     """
-    length = len(storage.all(State))
-    states = storage.all(State)
+    states = storage.all('State').values()
 
     return render_template('7-states_list.html', tasks=states)
 
@@ -25,7 +24,7 @@ def index():
 @app.teardown_appcontext
 def handle_teardown(self):
     """
-        method to handle teardown
+        handle teardown
     """
     storage.close()
 
