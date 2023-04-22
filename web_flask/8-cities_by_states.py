@@ -11,13 +11,16 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/states_list')
-def states_list():
+@app.route('/cities_by_states')
+def cities_by_states():
     """
-        list of all State objects present
+        web root content
     """
     states = list(storage.all('State').values())
-
+    print("=====================================================")
+    print(states[0])
+    # print(states[0])
+    print("=====================================================")
     return render_template('7-states_list.html', tasks=states)
 
 
