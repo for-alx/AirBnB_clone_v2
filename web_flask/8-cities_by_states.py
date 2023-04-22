@@ -14,18 +14,17 @@ app.url_map.strict_slashes = False
 @app.route('/cities_by_states')
 def cities_by_states():
     """
-        web root content
+        list of all State objects and corresponding cities
     """
     states = list(storage.all('State').values())
-    # print("=====================================================")
+    # print("======================Debuging=======================")
     # print(states[0].cities)
-    # # print(states[0])
     # print("=====================================================")
     return render_template('8-cities_by_states.html', tasks=states)
 
 
 @app.teardown_appcontext
-def handle_teardown(self):
+def teardown(self):
     """
         After each request you must remove the current session
     """
