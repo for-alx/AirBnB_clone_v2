@@ -24,11 +24,11 @@ def hbnb():
     places = list(storage.all('Place').values())
     cities = list(storage.all('City').values())
     users = list(storage.all('User').values())
-    # print('====================================')
+    # print('========Debuging session============')
     # print(type(places[0]))
-    for walla in users:
-        if walla.id == 'fa44780d-ac48-41ab-9dd0-ac54a15755cf':
-            print(walla.first_name)
+    # for walla in users:
+    #     if walla.id == 'fa44780d-ac48-41ab-9dd0-ac54a15755cf':
+    #         print(walla.first_name)
     # print('====================================')
     return render_template('100-hbnb.html', tasks=states, amenities=amenities, places=places, users=users)
 
